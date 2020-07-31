@@ -27,11 +27,13 @@ class MainActivity : AppCompatActivity() {
 
     //点击事件
     fun funCall(view: View) {
+        //检查是否有权限
         val isHavePermission = cheachPermisssion()
-        if (isHavePermission){
+        if (isHavePermission){ //有权限则直接拨打电话
             call()
             return
         }
+        //没有权限时请求权限
         ActivityCompat.requestPermissions(this, permissions.toTypedArray(),100)
 
     }
@@ -65,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             if (canCall){ //全部权限都允许
                 call()
             }else{
-                //此处你也可以添加一个弹窗 让用户选择是否开启权限
+                //此处你也可以添加一个弹窗 让用户跳转到设置界面打开相应的权限，此处我只做了一个简单的Toast 提示
                 Toast.makeText(this,"请到设置中打开相应的权限，否侧影响正常操作",Toast.LENGTH_SHORT).show()
             }
         }
